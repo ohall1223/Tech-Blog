@@ -76,8 +76,5 @@ include: [{
     });
 })
 
-router.get('/new', (res, res) => {
-    res.render('new-post');
-});
 
 module.exports = router;
