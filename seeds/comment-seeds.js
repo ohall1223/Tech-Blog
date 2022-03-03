@@ -1,4 +1,4 @@
-const { Comment } = require('../models');
+const Comment = require('../models/Comment');
 
 const commentData = [{
         comment_text: "Lorem ipsum dolor sit amet",
