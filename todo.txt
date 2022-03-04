@@ -1,0 +1,8 @@
+Render logged in users posts on their dashboard
+
+-db query on dashboard render route that captures all of the users routes and passes them into an object that we pass with the render method
+-handlebar file in dashboard
+-looping through all of the users posts & rendering the applicable information for each post
+- edit button on post 
+
+

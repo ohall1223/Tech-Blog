@@ -20,6 +20,9 @@
                     {{else}}
                     <a class="link" href="/login">Login</a>
                     {{/if}}
+                    {{#if loggedIn}}
+                    <h1>{{username}}</h1>
+                    {{/if}}
                 </nav>
             </div>
 

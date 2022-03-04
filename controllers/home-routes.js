@@ -3,6 +3,7 @@ const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 const User = require('../models/User')
 const router = require('express').Router();
+
 router.get('/', (req, res) => {
     console.log(Post)
     Post.findAll({
@@ -38,18 +39,20 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
     if(req.session.loggedIn) {
+        console.log(res)
         res.redirect('/');
         return;
     }
     res.render('login')
+   
 })
 
 router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    res.render('dashboard', {loggedIn: req.session.loggedIn})
 })
 
 router.get('/dashboard/new', (req, res) => {
-    res.render('new-post')
+    res.render('new-post', {loggedIn: req.session.loggedIn})
 })
 
 router.get('/signup', (req, res) => {
@@ -95,6 +98,27 @@ router.get('/post/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+router.get('/post/:id/edit', (req, res) => {
+    Post.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(dbPostData => {
+        if(!dbPostData) {
+            res.status(404).json({ message: 'No post found with this id' });
+            return;
+        }
+        const post = dbPostData.get({ plain: true });
+        console.log(post);
+        res.render('edit-post', { post, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 
 router.get('/posts-comments', (req, res) => {
     Post.findOne({
