@@ -1,12 +1,18 @@
-{{#if posts.length}}
-<section>
+{{!-- {{#if posts.length}} --}}
+<article class="post">
     <h2>Your Posts</h2>
     {{#each posts as |post|}}
     {{> dashboard-postinfo post}}
     {{/each}}
 
-</section>
-{{/if}}
+</article>
+{{!-- <article class="post">
+
+    {{#each posts as |post| }}
+    {{> post-info post}}
+    {{/each}}
+
+</article> --}}
+{{!-- {{/if}} --}}
 
 <button type="submit" class="btn"><a class="link" href="/dashboard/new">New Post</a></button>
-
